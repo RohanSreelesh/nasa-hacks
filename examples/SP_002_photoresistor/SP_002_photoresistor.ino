@@ -34,7 +34,9 @@ void setup()
 void loop() 
 { 
    photoresistor_reading = analogRead( PHOTORESISTOR_PIN ); 
-   Serial.println( photoresistor_reading ); 
+   Serial.print( "PHOTO TEST v2 | reading=" );
+   Serial.println( photoresistor_reading );
+   delay(500); // Two readings per second for easy upload verification 
  
    if( photoresistor_reading <= THRESHOLD )
    { 
