@@ -5,12 +5,10 @@ const int SERVO_PIN = PA8;
 const int MIN_PULSE = 600;
 const int MAX_PULSE = 2300;
 
-// Calibrate these with the mechanism disconnected first.
-const int PROTECTED_ANGLE = 10;
-const int EXPOSED_ANGLE = 170;
+const int PROTECTED_ANGLE = 0;
+const int EXPOSED_ANGLE = 90;
 const int LIGHT_THRESHOLD = 100;
 const int HYSTERESIS = 15;
-// Original photoresistor example treats lower readings as brighter.
 // Set false if your measured readings increase in bright light.
 const bool BRIGHT_IS_LOWER = true;
 
@@ -19,11 +17,10 @@ bool protectedState = true;
 bool pendingState = true;
 unsigned long pendingSince = 0;
 const unsigned long DARK_STABLE_MS = 500;
-const unsigned long LIGHT_STABLE_MS = 10000;
+const unsigned long LIGHT_STABLE_MS = 500;
 
 void setup() {
   Serial.begin(9600);
-  // Do not wait for Serial: the mechanism must work without a computer.
   pinMode(SENSOR_PIN, INPUT_ANALOG);
   panelServo.attach(SERVO_PIN, MIN_PULSE, MAX_PULSE);
   panelServo.write(PROTECTED_ANGLE);
@@ -33,7 +30,6 @@ void loop() {
   const int reading = analogRead(SENSOR_PIN);
   bool requestedState = protectedState;
 
-  // Keep the current position inside the threshold band.
   if (reading < LIGHT_THRESHOLD - HYSTERESIS) {
     requestedState = !BRIGHT_IS_LOWER;
   } else if (reading > LIGHT_THRESHOLD + HYSTERESIS) {
