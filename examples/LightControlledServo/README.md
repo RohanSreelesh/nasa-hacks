@@ -1,6 +1,6 @@
 # Light-controlled servo
 
-Moves to a protected position in darkness and an exposed position in bright light. Starts protected and operates without Serial Monitor. A threshold band and 500 ms stable reading requirement prevent repeated switching near the threshold.
+Moves to a protected position in darkness and an exposed position in bright light. Starts protected and operates without Serial Monitor. A threshold band prevents repeated switching near the threshold. Opens after 10 seconds of stable brightness, matching the existing photoresistor logic example, and closes after 500 ms of stable darkness.
 
 ## Wiring
 
@@ -17,8 +17,8 @@ The measured 6.4 V AA pack exceeds the listed servo rating; use a suitable regul
 Open `LightControlledServo.ino` in Arduino IDE with the same STM32F103C8 board/upload settings used for the working servo test. Upload, then view readings at 9600 baud. Compilation and physical integration of this example still need verification.
 
 1. First test without a mechanical load. `PROTECTED_ANGLE = 10` and `EXPOSED_ANGLE = 170` are placeholders. Set them to the actual positions your mechanism can reach without hitting stops; swap them if the direction is reversed.
-2. Measure bright and dark readings. Set `LIGHT_THRESHOLD` between them (130 is an uncalibrated starting value from the original photoresistor example).
+2. Measure bright and dark readings. Set `LIGHT_THRESHOLD` between them (100 is the starting value from the photoresistor logic example).
 3. Set `BRIGHT_IS_LOWER` according to the measurements. It defaults to true to match the original example's comparison.
-4. Set `HYSTERESIS` smaller than half the bright/dark reading difference. Readings must cross threshold ± this margin and stay there for 500 ms before the position changes.
+4. Set `HYSTERESIS` smaller than half the bright/dark reading difference. Readings must cross threshold ± this margin and stay there for the corresponding light/dark duration before the position changes.
 
 The sensing photoresistor must still see ambient light while the mechanism is protected. If the servo covers the only light sensor completely, it cannot detect returning light and reopen. Keep that sensor exposed or use another exposed sensor to control reopening.
