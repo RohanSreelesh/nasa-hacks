@@ -1,6 +1,6 @@
 # Photoresistor example
 
-Based on the supplied `SP_002_photoresistor` sketch for the hardware challenge. Serial output now includes `PHOTO TEST v2 | reading=` at two readings per second to confirm which version is running on the board.
+Original sketch copied unchanged from `SP_002_photoresistor` for the hardware challenge.
 
 1. Open `SP_002_photoresistor.ino` in Arduino IDE.
 2. Select your STM32F103C8T6 / Blue Pill board and the upload method matching your hardware setup. This sketch uses STM32 pin names and is not configured for an Arduino Uno.
