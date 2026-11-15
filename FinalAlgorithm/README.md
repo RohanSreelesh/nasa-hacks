@@ -1,8 +1,10 @@
 # Final algorithm foundation
 
-Open `FinalAlgorithm.ino` in Arduino IDE. State names and values match the supplied code photo; the initial state is `NOT_STARTED`.
+Open `FinalAlgorithm.ino` in Arduino IDE. States follow the supplied code photo, with `PROTECTING_PHOTORESISTOR` added after panel retraction and subsequent states renumbered. The initial state is `NOT_STARTED`.
 
-Intended sequence: detect light from the opening door, wait for the door to open, drive down the ramp, deploy panels, detect the storm, retract panels, wait out the storm, redeploy panels, finish.
+Intended sequence: detect light from the opening door, wait for the door to open, drive down the ramp, deploy panels, detect the storm, retract panels, tilt the photoresistor into its protected position, wait out the storm, redeploy panels, finish.
+
+`PROTECTING_PHOTORESISTOR` represents the sensor tilt after `RETRIEVING_SOLAR_PANELS_1` and before `WAITING_OUT_STORM`. Restoring the sensor and determining when the storm ends still need implementation; readings while tilted may differ from exposed readings.
 
 Timing constants come from the challenge package, PDF page 4:
 

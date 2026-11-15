@@ -5,10 +5,11 @@ const int DEPLOYING_SOLAR_PANELS_1 = 4;
 const int WAITING_FOR_STORM = 5;
 const int STORM_DETECTED = 6;
 const int RETRIEVING_SOLAR_PANELS_1 = 7;
-const int WAITING_OUT_STORM = 8;
-const int STORM_OVER = 9;
-const int DEPLOYING_SOLAR_PANELS_2 = 10;
-const int DONE = 11;
+const int PROTECTING_PHOTORESISTOR = 8;
+const int WAITING_OUT_STORM = 9;
+const int STORM_OVER = 10;
+const int DEPLOYING_SOLAR_PANELS_2 = 11;
+const int DONE = 12;
 
 int state = NOT_STARTED;
 
